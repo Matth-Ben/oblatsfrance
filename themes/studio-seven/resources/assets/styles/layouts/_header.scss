@@ -1,0 +1,6 @@
+@use "../config" as *;
+
+.header {
+  position: relative;
+  z-index: $z-header;
+}

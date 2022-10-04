@@ -1,0 +1,26 @@
+
+@use "../config" as *;
+
+html {
+  &.lenis { scroll-behavior: initial; }
+}
+
+[data-router-view] { min-height: 100vh; }
+
+.b-gutenberg {
+  &:first-child {
+    margin-top: 30px;
+
+    @include media-breakpoint-up(md) { margin-top: 60px; }
+
+    @include media-breakpoint-up(xl) { margin-top: 150px; }
+  }
+
+  &:last-child {
+    margin-bottom: 30px;
+
+    @include media-breakpoint-up(md) { margin-bottom: 60px; }
+
+    @include media-breakpoint-up(xl) { margin-bottom: 150px; }
+  }
+}

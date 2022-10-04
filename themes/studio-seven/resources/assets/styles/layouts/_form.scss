@@ -1,0 +1,224 @@
+@use "../config" as *;
+
+$form-font: $font-default;
+$font-color: $black;
+
+// There's 2 predefined classes that you can use on form fields to build your form
+// By default a field is displayed fullwidth with a label
+// .half - Add this class to make a field half width
+// .no-label - Add this class to hide the label of a field (only the placeholder is shown)
+
+input[type="submit"] { appearance: none; }
+
+.gform_confirmation_wrapper {
+  .gform_confirmation_message {
+    color: $font-color;
+    font-family: $form-font;
+    font-size: 18px;
+    font-weight: normal;
+  }
+}
+
+form {
+  .validation_error {
+    border: 0;
+    color: $danger;
+    font-family: $form-font;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  .gform_fields {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+    padding: 0;
+  }
+
+  .gfield {
+    position: relative;
+    width: 100%;
+    list-style-type: none;
+    margin: 0 0 15px;
+    padding: 0 10px;
+
+    @include media-breakpoint-up(md) { margin: 0 0 20px; }
+
+    &_error {
+      border: 0;
+      background-color: transparent;
+
+      .ginput_container {
+        input,
+        textarea,
+        select {
+          border: 1px solid $danger;
+          padding: 20px 20px 20px 20px;
+        }
+      }
+
+      .validation_message {
+        font-family: $form-font;
+        font-size: 12px;
+        color: $danger;
+      }
+    }
+
+    &_checkbox {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px 0 10px -30px;
+    }
+
+    &.half {
+      width: 100%;
+
+      @include media-breakpoint-up(md) { width: 50%; }
+    }
+
+    &.cover {
+      input,
+      textarea,
+      select {
+        border-bottom: 1px solid $black;
+
+        &,
+        &::placeholder {
+          //define font size
+        }
+      }
+    }
+
+    &.no-label .gfield_label,
+    &_visibility_hidden { display: none; }
+  }
+
+  .ginput_container {
+    margin: 0;
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 16px 20px;
+      border: 0;
+      border-radius: 0;
+      background-color: $white;
+      color: $font-color;
+      font-family: $form-font;
+      outline: none;
+      appearance: none;
+
+      &::placeholder {
+        font-family: $form-font;
+        color: $font-color;
+      }
+
+      &[type="radio"],
+      &[type="checkbox"] {
+        position: relative;
+        flex: 0 0 15px;
+        width: 15px;
+        height: 15px;
+        margin: 5px 15px 0 0;
+        padding: 0;
+        border-radius: 0;
+        border: solid 1px $black;
+        background-color: $white;
+        appearance: none;
+        outline: none;
+        overflow: hidden;
+        cursor: pointer;
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 2px;
+          top: 2px;
+          transform: translate(15px, 15px);
+          transition: transform 0.5s $ease-out;
+          width: 9px;
+          height: 9px;
+          background-color: $black;
+        }
+
+        &:checked::after { transform: translate(0); }
+      }
+    }
+
+    select option { color: $black; }
+
+    &_consent {
+      display: flex;
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        flex: 0 0 11px;
+        width: 11px;
+        height: 11px;
+
+        &::after {
+          left: 1px;
+          top: 1px;
+          transform: translate(11px, 11px);
+          width: 7px;
+          height: 7px;
+        }
+      }
+    }
+
+    &_select {
+      position: relative;
+
+      &::after {
+        content: "";
+        background: url("../images/svg/arrow.svg") no-repeat center;
+        background-size: cover;
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        width: 7px;
+        height: 3px;
+        pointer-events: none;
+      }
+    }
+  }
+
+  label {
+    font-family: $form-font;
+    color: $font-color;
+
+    a {
+      display: inline-block;
+      transition: opacity 0.5s $ease-out;
+      color: $primary;
+      font-weight: 600;
+
+      @media (hover: hover) {
+        &:hover { opacity: 0.5; }
+      }
+    }
+  }
+
+  fieldset { border: 0; }
+
+  legend {
+    font-style: italic;
+  }
+
+  .gchoice {
+    margin: 10px 0 0 30px;
+  }
+
+  .gform_button {
+    border: none;
+    font-family: $form-font;
+    color: $font-color;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+  }
+}
+
