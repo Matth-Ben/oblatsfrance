@@ -15,7 +15,7 @@
     ]
   },
   "publicPath": "/wp-content/themes/studio-seven",
-  "devUrl": "http://starter-ss.localhost",
+  "devUrl": "http://oblatsfrance.localhost",
   "proxyUrl": "http://localhost:3000",
   "cacheBusting": "[name]",
   "watch": [

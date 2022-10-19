@@ -9,10 +9,46 @@ if (function_exists('acf_add_options_page')) {
 }
 
 if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
-        'key' => 'tracking',
-        'title' => 'Tracking',
+    acf_add_local_field_group([
+        'key' => 'options',
+        'title' => 'Options pour les développeurs',
         'fields' => [
+            [
+                'key' => 'debug_tab',
+                'label' => 'Debug',
+                'name' => '',
+                'type' => 'tab',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'placement' => 'left',
+                'endpoint' => 0
+            ],
+            [
+                'key' => 'debug',
+                'label' => 'Activer le mode debug',
+                'name' => 'debug',
+                'type' => 'true_false',
+                'instructions' => 'Ce mode est réservé aux développeurs. Ne pas toucher.',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'message' => '',
+                'default_value' => 0,
+                'ui' => 1,
+                'ui_on_text' => '',
+                'ui_off_text' => ''
+            ],
+            [
+                'key' => 'tracking_tab',
+                'label' => 'Tracking',
+                'name' => '',
+                'type' => 'tab',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'placement' => 'left',
+                'endpoint' => 0
+            ],
             [
                 'key' => 'google_tag_manager',
                 'label' => 'Code Google Tag Manager',
@@ -35,7 +71,7 @@ if (function_exists('acf_add_local_field_group')) {
                 ]
             ]
         ]
-    ));
+    ]);
 }
 
 require_once dirname(__DIR__) . '/resources/blocs-setup.php';
@@ -120,18 +156,6 @@ function toCamelCase($string) {
       return strtoupper($matches[1]);
     }, $string);
 }
-
-/**
-* Add a custom endpoint to access TwitterFeed data
-*/
-// require_once dirname(__DIR__) . '/resources/TwitterFeed.php';
-
-// add_action( 'rest_api_init', function () {
-//     register_rest_route( 'studio-seven/v1', '/twitterfeed', array(
-//         'methods' => 'GET',
-//         'callback' => array('TwitterFeed', 'getTweets'),
-//     ));
-// });
 
 /**
 * Add menu location
