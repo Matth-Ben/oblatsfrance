@@ -13,6 +13,10 @@ const blockList = [
   {
     name: 'instafeed',
     fileName: 'InstaFeed'
+  },
+  {
+    name: 'b-cover-slider',
+    fileName: 'CoverSlider'
   }/* generated class */
 ]
 

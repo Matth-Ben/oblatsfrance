@@ -34,5 +34,21 @@ class Block extends Controller {
       'id' => $data['id-form']
     ];
   }
+
+  public static function coverSlider($data) {
+    $return = [
+        'slides' => []
+    ];
+
+    for ($i = 0; $i < $data['slides'] ; $i++) {
+        $return['slides'][] = array(
+            'image' => Element::image($data['slides_' . $i . '_image'], '1920px', null, true),
+            'title' => $data['slides_' . $i . '_title'],
+            'content' => $data['slides_' . $i . '_content'],
+            'button' => $data['slides_' . $i . '_button']
+        );
+    }
+    return $return;
+  }
   // generated function here
 }
