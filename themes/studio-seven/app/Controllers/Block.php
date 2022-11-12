@@ -50,5 +50,13 @@ class Block extends Controller {
     }
     return $return;
   }
+
+  public static function cover($data) {
+    return [
+      'display' => $data['display-breadcrumb'],
+      'image' => Element::image($data['image'], '1920px', null, true),
+      'title' => $data['title']
+    ];
+  }
   // generated function here
 }

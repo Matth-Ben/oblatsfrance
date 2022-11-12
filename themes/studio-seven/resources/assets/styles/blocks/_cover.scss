@@ -1,0 +1,61 @@
+@use "../config" as *;
+@use "../mixins" as *;
+
+.b-cover {
+  position: relative;
+
+  &__item {
+    &-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      height: 100%;
+
+      .image {
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+          background: rgba(152, 152, 152, 0.5);
+        }
+      }
+    }
+
+    &-content {
+      position: relative;
+      height: 250px;
+
+      @include media-breakpoint-up(md) { height: 500px; }
+    }
+
+    &-title {
+      position: absolute;
+      top: 50%;
+      left: submargin(24, 2, true);
+      color: $white;
+      transform: translateY(-50%);
+
+      @include f48;
+
+      @include media-breakpoint-up(md) {
+        @include f72;
+      }
+    }
+
+    &-breadcrumb {
+      position: absolute;
+      top: 50px;
+      left: submargin(24, 2, true);
+      color: $white;
+
+      @include media-breakpoint-up(md) { top: 100px; }
+    }
+  }
+}
