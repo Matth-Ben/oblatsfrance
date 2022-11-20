@@ -2,11 +2,12 @@
 @use "../mixins" as *;
 
 .b-cover-slider {
-  height: 600px;
-  margin: 120px auto;
-  position: relative;
+  &__content {
+    height: 600px;
+    position: relative;
 
-  @include media-breakpoint-up(md) { height: 500px; }
+    @include media-breakpoint-up(md) { height: 500px; }
+  }
 
   &__imgs {
     position: relative;
