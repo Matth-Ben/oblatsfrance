@@ -21,3 +21,35 @@
 
   @return calc((100% - #{$guttersWidth}) / #{$parent-nb} * #{$col-nb} + (#{$gutter-size} * (#{$col-nb} + #{$endGutter} )));
 }
+
+$breakpoints: (
+  xxs: 0,
+  xs: 320px,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px
+);
+
+// media query mixin
+@mixin break($size) {
+  @media (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+// number of columns variable
+$items: 24;
+
+// loop over the breakpoints
+@each $key, $value in $breakpoints {
+  @for $i from 1 through $items {
+    .subcol-#{$key}-#{$i} {
+      @include break($key) {
+        width: subcol(15, $i);
+      }
+    }
+  }
+}
