@@ -40,13 +40,13 @@ class Block extends Controller {
         'slides' => []
     ];
 
-    for ($i = 0; $i < $data['slides'] ; $i++) {
-        $return['slides'][] = array(
-            'image' => Element::image($data['slides_' . $i . '_image'], '1920px', null, true),
-            'title' => $data['slides_' . $i . '_title'],
-            'content' => $data['slides_' . $i . '_content'],
-            'button' => $data['slides_' . $i . '_button']
-        );
+    foreach ($data as $key => $item) {
+      $return['slides'][] = array(
+        'image' => Element::image($item['image'], '1920px', null, true),
+        'title' => $item['title'],
+        'content' => $item['content'],
+        'button' => $item['button']
+      );
     }
     return $return;
   }
