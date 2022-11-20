@@ -1,7 +1,44 @@
 @use "../config" as *;
 
 .b-flexible-content {
-  margin: 40px 0;
+  margin: 2.5rem 0;
 
-  @include media-breakpoint-up(md) { margin: 60px 0; }
+  @include media-breakpoint-up(md) { margin: 4rem 0; }
+
+  .c-classic-content {
+    &__content {
+      margin-top: 2rem;
+    }
+
+    &__button {
+      margin-top: 1.25rem;
+    }
+  }
+
+  &__block {
+    color: $white;
+    background: $black;
+
+    .c-classic-content {
+      padding: 2rem;
+
+      &__content {
+        margin-top: 1rem;
+      }
+
+      &__button {
+        margin-top: 1.25rem;
+      }
+    }
+  }
+
+  .flexible-classic-media {
+    .f-media {
+      &--image {
+        height: 25rem;
+
+        @include media-breakpoint-up(lg) { height: 30rem; }
+      }
+    }
+  }
 }

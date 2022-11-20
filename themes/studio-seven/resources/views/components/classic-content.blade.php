@@ -13,7 +13,7 @@
 
   @if(!empty($data['button']))
     <div class="c-classic-content__button">
-      <a href="{{ $data['button']['url'] }}" class="e-button btn" @if($data['button']['target']){{ 'target="_blank" rel="noopener"' }}@endif>{!! $data['button']['title'] !!}</a>
+      <a href="{{ $data['button']['url'] }}" class="button" @if($data['button']['target']){{ 'target="_blank" rel="noopener"' }}@endif>{!! $data['button']['title'] !!}</a>
     </div>
   @endif
 </div>

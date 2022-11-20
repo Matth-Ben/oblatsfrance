@@ -12,18 +12,18 @@
 @endphp
 
 <section class="b-flexible-content">
-  <div class="container-fluid">
-    <div class="row">
-      @foreach ($data['components'] as $component)
-        @php
-          $col = 'col-xl-9 offset-md-2';
+  <div class="row align-items-stretch">
+    @foreach ($data['components'] as $component)
+      @php
+        $col = '';
 
-          if (count($data['components']) === 1) $col = $component['name'] === 'flexible-classic-content' ? 'col-xl-14 offset-xl-5 offset-md-2' : 'offset-md-2';
-        @endphp
-        <div class="col-md-20 {{ $col }} @if($loop->index === 0 && $component['name'] === 'flexible-classic-content'){{ 'u-o1' }}@endif">
-          @include('components/' . $component['name'], ['data' => $component['data']])
-        </div>
-      @endforeach
-    </div>
+        if (count($data['components']) === 1) $col = 'subcol-md-15';
+        if (count($data['components']) > 1 && $loop->index === 0) $col .= 'suboffset-md-2';
+        if (count($data['components']) > 1) $col = $component['name'] === 'flexible-classic-content' ? 'subcol-lg-6 b-flexible-content__block' : 'subcol-lg-9 u-p0';
+      @endphp
+      <div class="subcol-xs-22 {{ $col }} @if($component['name'] !== 'flexible-classic-content' && count($data['components']) === 1){{ 'flexible-classic-media' }}@endif @if($component['name'] === 'flexible-classic-content'){{ 'u-o1' }}@else{{ 'u-o2' }}@endif">
+        @include('components/' . $component['name'], ['data' => $component['data']])
+      </div>
+    @endforeach
   </div>
 </section>

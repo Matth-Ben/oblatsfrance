@@ -1,14 +1,13 @@
 @use "../config" as *;
 
 .f-media {
-  margin: 10px 0;
-
-  @include media-breakpoint-up(xl) { margin: 0; }
+  margin: 0;
 
   &--image {
     position: relative;
-    height: 0;
-    padding-top: 56.25%;
+    height: 18rem;
+
+    @include media-breakpoint-up(lg) { height: 100%; }
   }
 
   &__image {
