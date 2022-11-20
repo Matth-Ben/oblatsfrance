@@ -2,7 +2,7 @@
 @use "../mixins" as *;
 
 .b-cover {
-  position: relative;
+  &__content { position: relative; }
 
   &__item {
     &-background {
