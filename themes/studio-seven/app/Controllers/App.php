@@ -76,6 +76,15 @@ class App extends Controller {
         'clientId' => get_option('clientid'),
         'userId' => get_option('userid'),
         'accessToken' => get_option('accesstoken')
+      ],
+      'header' => [
+        'logo' => Element::image($options['h_logo'], '250px'),
+        'button' => $options['h_button'],
+        'login' => $options['login']
+      ],
+      'footer' => [
+        'logo' => Element::image($options['f_logo'], '250px'),
+        'description' => $options['f_description']
       ]
     ];
   }

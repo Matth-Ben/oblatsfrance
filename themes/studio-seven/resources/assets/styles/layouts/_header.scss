@@ -1,6 +1,390 @@
 @use "../config" as *;
 
 .header {
-  position: relative;
+  position: fixed;
+  top: 0;
   z-index: $z-header;
+  width: 100vw;
+
+  &-top {
+    position: relative;
+    z-index: 3;
+    padding: 1.125rem 0 1.313rem;
+    background: $white;
+    border-top: 0.313rem solid $primary;
+    border-bottom: 0.063rem solid $primary;
+
+    @include media-breakpoint-up(lg) {
+      padding: 2.188rem 0 2.313rem;
+      border-bottom: 0.063rem solid $primary;
+    }
+
+    &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__logo {
+      max-width: 8.75rem;
+
+      @include media-breakpoint-up(lg) {
+        max-width: 15.625rem;
+      }
+    }
+
+    &__toggler {
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1;
+
+      @include media-breakpoint-up(xl) { display: none; }
+
+      span,
+      div {
+        width: 1.563rem;
+        height: 0.063rem;
+        background-color: $primary;
+      }
+
+      span {
+        display: block;
+        transform: scaleX(1);
+        transform-origin: right;
+        transition: transform 0.5s $ease-out calc(var(--transition-order) * 100ms + 500ms);
+
+        &:not(:first-child) { margin-top: 0.313rem; }
+
+        &:nth-child(2) {
+          width: 1.875rem;
+        }
+      }
+
+      div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1.875rem;
+        transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
+        transition: transform 0.5s $ease-out calc(var(--transition-order) * 100ms);
+
+        &:last-child { transform: translate(-50%, -50%) rotate(-45deg) scaleX(0); }
+      }
+
+      &.open {
+        span {
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.5s $ease-out calc(var(--transition-order) * 100ms);
+        }
+
+        div {
+          transform: translate(-50%, -50%) rotate(45deg) scaleX(1);
+          transition: transform 0.5s $ease-out calc(var(--transition-order) * 100ms + 500ms);
+
+          &:last-child { transform: translate(-50%, -50%) rotate(-45deg) scaleX(1); }
+        }
+      }
+
+      @include media-breakpoint-up(lg) {
+        display: none;
+      }
+    }
+
+    &__nav {
+      .search { margin-left: 1.563rem; }
+      .login { margin-right: 2.813rem; }
+    }
+
+    &__founder,
+    &__nav {
+      display: none;
+
+      @include media-breakpoint-up(lg) {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  &-nav {
+    position: fixed;
+    z-index: 2;
+    height: 100%;
+    background: $white;
+
+    @include media-breakpoint-up(lg) {
+      position: relative;
+      padding: 1rem 0 1.063rem;
+      border-bottom: 0.063rem solid $primary;
+    }
+
+    &__list {
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+      border-bottom: 0.063rem solid $black;
+
+      @include media-breakpoint-down(lg) {
+        padding-top: 4rem;
+        padding-bottom: 3rem;
+      }
+
+      @include media-breakpoint-up(lg) {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        columns: auto;
+        border-bottom: none;
+      }
+    }
+
+    &__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      margin-bottom: 0.938rem;
+      overflow: hidden;
+
+      @include media-breakpoint-up(lg) {
+        justify-content: center;
+        margin-bottom: auto;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: auto;
+          right: 0;
+          bottom: auto;
+          width: 0.063rem;
+          height: 0.938rem;
+          margin: auto;
+          background: $primary;
+        }
+
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+      }
+
+      &-link {
+        font-family: $font-default;
+        font-weight: 400;
+        font-size: 1.063rem;
+        line-height: 1.4;
+        opacity: 0.8;
+        transition: opacity 1s $ease-out;
+
+        @media (hover: hover) {
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        @include media-breakpoint-up(lg) {
+          position: relative;
+          width: calc(100% - 1.25rem);
+          padding: 0.75rem 0 0.938rem;
+          font-family: $font-heading;
+          font-weight: 500;
+          line-height: 1.2;
+          letter-spacing: 0.03em;
+          text-align: center;
+          overflow: hidden;
+          opacity: 1;
+          transition: color 1s $ease-out;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: $white;
+            transform: translateY(100%);
+            transition: transform 1s $ease-out;
+          }
+
+          &.active {
+            &::after {
+              transform: translateY(0);
+            }
+          }
+
+          @media (hover: hover) {
+            &:hover {
+              color: $primary;
+
+              &::after {
+                transform: translateY(0);
+              }
+            }
+          }
+        }
+
+        &.active {
+          color: $primary;
+        }
+      }
+    }
+
+    &__address {
+      color: $primary;
+      margin: 3.125rem auto 1.563rem;
+    }
+
+    &__nav {
+      display: flex;
+      align-items: center;
+      padding-top: 3.125rem;
+      padding-bottom: 3.125rem;
+      border-bottom: 0.063rem solid rgba(27, 25, 25, 0.1);
+
+      .search { margin-left: 1.563rem; }
+      .login { margin-left: 3.125rem; }
+    }
+
+    &__address,
+    &__nav,
+    &__founder {
+      @include media-breakpoint-up(lg) { display: none; }
+    }
+  }
+
+  &-search {
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 7.188rem;
+    background: $white;
+    border-bottom: 0.063rem solid $primary;
+
+    @include media-breakpoint-up(lg) { z-index: 1; }
+
+    &__form {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 100%;
+
+      &-field {
+        width: 100%;
+        height: 100%;
+        padding: 0 2.5rem;
+      }
+
+      &-button {
+        position: absolute;
+        top: 50%;
+        right: 2.5rem;
+        opacity: 0.4;
+        transform: translateY(-50%);
+
+        input { background: none; }
+      }
+    }
+  }
+
+  .founder {
+    display: flex;
+    align-items: center;
+    gap: 0.938rem;
+
+    &-logo {
+      width: 4.688rem;
+      height: 1.25rem;
+    }
+  }
+
+  .login {
+    opacity: 0.4;
+    overflow: hidden;
+    transition: opacity 1s $ease-out;
+
+    &-label {
+      display: block;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 0.063rem solid $black;
+    border-radius: 50%;
+    transition: border-color 1s $ease-out;
+    cursor: pointer;
+
+    svg {
+      transform: scale(1);
+      transform-origin: center;
+      transition: transform 0.5s $ease-out 500ms;
+    }
+
+    path {
+      transition: fill 1s $ease-out;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: $primary;
+
+        path {
+          fill: $primary;
+        }
+
+        div {
+          background-color: $primary;
+        }
+      }
+    }
+
+    div {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1.875rem;
+      height: 0.063rem;
+      background-color: $black;
+      transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
+      transition: transform 0.5s $ease-out calc(var(--transition-order) * 100ms);
+
+      &:nth-child(2) { transform: translate(-50%, -50%) rotate(-45deg) scaleX(0); }
+    }
+
+    &.open {
+      svg {
+        transform: scale(0);
+        transform-origin: center;
+        transition: transform 0.5s $ease-out;
+      }
+
+      div {
+        transform: translate(-50%, -50%) rotate(45deg) scaleX(1);
+        transition: transform 0.5s $ease-out calc(var(--transition-order) * 100ms + 500ms);
+
+        &:nth-child(2) { transform: translate(-50%, -50%) rotate(-45deg) scaleX(1); }
+      }
+    }
+  }
 }
