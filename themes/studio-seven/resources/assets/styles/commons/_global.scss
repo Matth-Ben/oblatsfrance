@@ -24,3 +24,14 @@ html {
     @include media-breakpoint-up(xl) { margin-bottom: 150px; }
   }
 }
+
+section {
+  &:first-child {
+    margin-top: 0;
+    padding-top: 120px;
+  }
+}
+
+.e-link {
+  position: relative;
+}
